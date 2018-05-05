@@ -9,15 +9,28 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Fitness log controller.
+ */
 @RestController
 @RequestMapping("/api")
 public class FitnessLogController {
     private FitnessLogRepository fitnessLogRepository;
 
+    /**
+     * Instantiates a new Fitness log controller.
+     *
+     * @param fitnessLogRepository the fitness log repository
+     */
     public FitnessLogController(FitnessLogRepository fitnessLogRepository) {
         this.fitnessLogRepository = fitnessLogRepository;
     }
 
+    /**
+     * Retrieve all fitness logs list.
+     *
+     * @return the list
+     */
     @GetMapping("/fitness-logs")
     public List<FitnessLog> retrieveAllFitnessLogs() {
         return new ArrayList<>(fitnessLogRepository.findAll());
