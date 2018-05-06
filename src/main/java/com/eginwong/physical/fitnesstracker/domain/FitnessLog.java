@@ -20,6 +20,8 @@ public class FitnessLog {
     private int pullups;
     private int crunches;
     private int supermans;
+    // to handle nullable values
+    private Double weight;
 
     /**
      * Gets id.
@@ -129,6 +131,44 @@ public class FitnessLog {
         this.supermans = supermans;
     }
 
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FitnessLog that = (FitnessLog) o;
+
+        return new org.apache.commons.lang.builder.EqualsBuilder()
+                .append(pushups, that.pushups)
+                .append(pullups, that.pullups)
+                .append(crunches, that.crunches)
+                .append(supermans, that.supermans)
+                .append(weight, that.weight)
+                .append(logDate, that.logDate)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new org.apache.commons.lang.builder.HashCodeBuilder(17, 37)
+                .append(logDate)
+                .append(pushups)
+                .append(pullups)
+                .append(crunches)
+                .append(supermans)
+                .append(weight)
+                .toHashCode();
+    }
+
     @Override
     public String toString() {
         return "FitnessLog{" +
@@ -138,6 +178,7 @@ public class FitnessLog {
                 ", pullups=" + pullups +
                 ", crunches=" + crunches +
                 ", supermans=" + supermans +
+                ", weight=" + weight +
                 '}';
     }
 }

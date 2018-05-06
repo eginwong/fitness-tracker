@@ -12,5 +12,4 @@ public class FitnessTrackerApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

@@ -1,12 +1,11 @@
 package com.eginwong.physical.fitnesstracker.controller;
 
 import com.eginwong.physical.fitnesstracker.domain.FitnessLog;
-import com.eginwong.physical.fitnesstracker.repository.FitnessLogRepository;
+import com.eginwong.physical.fitnesstracker.service.FitnessLogService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,15 +14,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class FitnessLogController {
-    private FitnessLogRepository fitnessLogRepository;
+
+    private FitnessLogService fitnessLogService;
 
     /**
      * Instantiates a new Fitness log controller.
      *
-     * @param fitnessLogRepository the fitness log repository
+     * @param fitnessLogService the fitness log service
      */
-    public FitnessLogController(FitnessLogRepository fitnessLogRepository) {
-        this.fitnessLogRepository = fitnessLogRepository;
+    public FitnessLogController(FitnessLogService fitnessLogService) {
+        this.fitnessLogService = fitnessLogService;
     }
 
     /**
@@ -33,6 +33,6 @@ public class FitnessLogController {
      */
     @GetMapping("/fitness-logs")
     public List<FitnessLog> retrieveAllFitnessLogs() {
-        return new ArrayList<>(fitnessLogRepository.findAll());
+        return fitnessLogService.retrieveFitnessLogs();
     }
 }
